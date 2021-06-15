@@ -17,7 +17,7 @@ app.use(cookieParser());
 // require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 require('dotenv/config');// Passwords
 
-
+ 
 //Connection to online DB
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true }, () =>{  
     console.log('Connected to db');
