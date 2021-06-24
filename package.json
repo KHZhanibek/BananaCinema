@@ -25,6 +25,7 @@
     "node-themoviedb": "^0.2.8",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
+    "totp-generator": "^0.0.9",
     "unirest": "^0.6.0"
   }
 }
