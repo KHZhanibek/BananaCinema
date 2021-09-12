@@ -5,9 +5,6 @@ const bodyParser = require('body-parser');  // json -> output
 const verify = require('./routes/verifyToken');
 const cookieParser = require('cookie-parser');
 const {checkUser} = require('./checkuser');
-const { MovieDb } = require('moviedb-promise');
-const moviedb = new MovieDb('c7ac9277318b8c0f0f437c84fbc33bec');
-const totp = require("totp-generator");
 //console.log(checker(req, res));
 
 app.use(bodyParser.json());
@@ -18,7 +15,7 @@ app.use(cookieParser());
 // require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 require('dotenv/config');// Passwords
 
- 
+
 //Connection to online DB
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true }, () =>{  
     console.log('Connected to db');
@@ -32,10 +29,8 @@ app.use('/', express.static(__dirname +"/public"));
 //EJS Rendering
 app.get('*', checkUser);
 
-app.get('/', async (req, res) =>{
-	// const ans = await moviedb.movieLatest;
-	// console.log(ans.results);
-	res.render('./index');
+app.get('/', (req, res) =>{
+    res.render('./index');
 });
 app.get('/auth', (req, res) =>{
     res.render('./auth');
@@ -79,5 +74,6 @@ singleMovieRoute = require('./routes/singlemovie');
 app.use('/movies/movie', singleMovieRoute);
 
 
+//Running Server on port 5000
 const port = process.env.PORT || 5000
 app.listen(port);
